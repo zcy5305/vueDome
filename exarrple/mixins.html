@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hello World</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>hello world</h1>
+    <br />
+    <div id="app">{{ num }} <button @click="add">改变</button></div>
+    <script type="text/javascript">
+            //   var newUpdated = {
+            //       updated:function(){
+            //           console.log('混入updated');
+            //       }
+            //   }
+            //   Vue.mixin({
+            //       updated:function(){
+            //           console.log('全局updated');
+            //       }
+            //   })
+              var extendObj ={
+                updated:function(){
+                        console.log('扩张updated');
+                    },
+                    methods:{
+                        add:function(){
+                            this.num++;
+                            console.log('扩张1updated');
+                        }
+                    }
+              }
+              var app = new Vue({
+                  el:"#app",
+                  data:{
+                      num:1
+                  },
+                  methods:{
+                      add:function(){
+                          this.num++;
+                          console.log('原生');
+                      }
+                  },
+                  updated() {
+                      console.log('原生updated');
+                  },
+                //   created(){
+                //     console.log('原生created');
+                //   },
+                //   mixins:[newUpdated],
+                  extends:extendObj
+              });
+      
+              //顺序：全局，混入，原生
+    </script>
+  </body>
+</html>
