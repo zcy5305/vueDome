@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>hello World</title>
+   <script type='text/javascript' src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1> hello world</h1>
+    <br>
+    <div id='app'>
+        <author></author>
+    </div>
+    <script type='text/javascript'>
+        var _author = Vue.extend({
+            template:`<div>{{message}}-{{a}}</div>`,
+            data:function(){
+                return {
+                    message:'hello world'
+                }
+            },
+            props:{
+                a:''
+            }
+        });
+        
+        new _author({propsData:{a:1}}).$mount('author');
+    </script>
+</body>
+</html>

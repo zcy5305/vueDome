@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>hello World</title>
+   <script type='text/javascript' src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1> hello world</h1>
+    <br>
+    <div id='app'>
+        <label>今日温度:{{wendu}}</label><br>
+        <label>穿衣提示:{{chuangyi}}</label><br>
+        <button @click='add'>增加</button>
+        <button @click='removed'>减少</button>
+    </div>
+    <script type='text/javascript'>
+        var list=['外套','T-shirt','袄']
+        var app = new Vue({
+            el:"#app",
+            data:{
+                wendu:10,
+                chuangyi:'外套'
+            },
+            methods:{
+                add:function(){
+                    this.wendu+=5;
+                },
+                removed:function(){
+                    this.wendu-=5;
+                }
+            },
+            // watch:{
+            //     wendu(newVal){
+            //         if(newVal >= 20){
+            //             this.chuangyi=list[1];
+            //         }else if(newVal< 20 & newVal >=0){
+            //             this.chuangyi =list[0];
+            //         }else{
+            //             this.chuangyi=list[2];
+            //         }
+
+            //     }
+            // }
+        });
+        app.$watch('wendu',function(newVal){
+            if(newVal >= 20){
+                this.chuangyi=list[1];
+            }else if(newVal< 20 & newVal >=0){
+                this.chuangyi =list[0];
+            }else{
+                this.chuangyi=list[2];
+            }
+        });
+    </script>
+</body>
+</html>

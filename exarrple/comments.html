@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>hello World</title>
+   <script type='text/javascript' src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1> hello world</h1>
+    <br>
+    <div id='app'>
+        <xiaoyu></xiaoyu>
+        <component :is="who"></component>
+        <button @click='changeButton'>切换</button>
+    </div>
+    <script type='text/javascript'>
+        var city ={
+            template:`<h1>上海</h1>`
+        }
+        var xiaoyu ={
+            template:`<div>sdfsdfsdfsfs<br><city></city></div>`,
+            components:{
+                'city':city
+            }
+        }
+        var componentA ={
+            template:`<h1>I'm componentA</h1>`
+        }
+        var componentb ={
+            template:`<h1>I'm componentb</h1>`
+        }
+        var componentc ={
+            template:`<h1>I'm componentc</h1>`
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:'hello world',
+                who:'componentA'
+            },
+            components:{
+                'xiaoyu':xiaoyu,
+                'componentA':componentA,
+                'componentb':componentb,
+                'componentc':componentc
+            },
+            methods:{
+                changeButton:function(){
+                    switch(this.who){
+                        case 'componentA':
+                            this.who='componentb';
+                        return
+                        case 'componentb':
+                            this.who='componentc';
+                        return
+                        case 'componentc':
+                            this.who='componentA';
+                        return
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
